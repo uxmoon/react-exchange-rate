@@ -24,6 +24,33 @@ function App() {
 
         <button>Buscar cotizaciones</button>
       </form>
+
+      <div>
+        <div>
+          <div>flag</div>
+          <div>Moneda</div>
+          <div>Valor</div>
+        </div>
+        <div>
+          <div>flag</div>
+          <div>Moneda</div>
+          <div>Valor</div>
+        </div>
+        <div>
+          <div>flag</div>
+          <div>Moneda</div>
+          <div>Valor</div>
+        </div>
+        <div>
+          <div>flag</div>
+          <div>Moneda</div>
+          <div>Valor</div>
+        </div>
+      </div>
+
+      <div>
+        <button>Ver más cotizaciones</button>
+      </div>
     </div>
   );
 }
