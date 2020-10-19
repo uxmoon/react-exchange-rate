@@ -58,29 +58,6 @@ class App extends Component {
 
           <Rates rates={this.state.rates} />
 
-          <div className="Rates">
-            <div className="Rates-item">
-              <div>flag</div>
-              <div>Moneda</div>
-              <div>Valor</div>
-            </div>
-            <div className="Rates-item">
-              <div>flag</div>
-              <div>Moneda</div>
-              <div>Valor</div>
-            </div>
-            <div className="Rates-item">
-              <div>flag</div>
-              <div>Moneda</div>
-              <div>Valor</div>
-            </div>
-            <div className="Rates-item">
-              <div>flag</div>
-              <div>Moneda</div>
-              <div>Valor</div>
-            </div>
-          </div>
-
           <div>
             <Button label="Ver más cotizaciones" color="secondary" />
           </div>
