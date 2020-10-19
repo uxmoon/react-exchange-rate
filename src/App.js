@@ -6,12 +6,11 @@ import Button from './components/Button';
 import API from './api/exchangerate';
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      rates: {}
-    }
+      rates: {},
+    };
   }
 
   async componentDidMount() {
@@ -22,9 +21,17 @@ class App extends Component {
 
     let response = await API.get('/latest?base=USD');
     // console.log(response.data.rates);
-    this.setState({rates: response.data.rates});
+    this.setState({ rates: response.data.rates });
     // console.log(this.state.rates);
   }
+
+  handleCurrency = (evt) => {
+    console.log(evt.target.value);
+  };
+
+  handleDate = (evt) => {
+    console.log(evt.target.value);
+  };
 
   render() {
     // console.log(this.state);
@@ -39,18 +46,22 @@ class App extends Component {
                 Selecciona la moneda de referencia
               </label>
               <div className="Form-select">
-                <select id="currency">
-                  <option value="">Moneda</option>
-                  <option value="">Moneda</option>
-                  <option value="">Moneda</option>
-                  <option value="">Moneda</option>
+                <select id="currency" onChange={this.handleCurrency}>
+                  <option value="USD">USD - Dólar americano</option>
+                  <option value="CAD">CAD - Dólar canadiense</option>
+                  <option value="GBP">GBP - Libras esterlinas</option>
+                  <option value="EUR">EUR - Euro</option>
                 </select>
               </div>
             </div>
 
             <div className="Form-field">
               <label htmlFor="date">Ingresá la fecha de cotización</label>
-              <input type="text" placeholder="DD / MM / YYYY" id="date" />
+              <input
+                type="date"
+                id="date"
+                onChange={this.handleDate}
+              />
             </div>
 
             <Button label="Buscar cotizaciones" color="primary" />
