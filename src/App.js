@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       rates: {},
       currencyBase: '',
-      currencyDate: ''
+      currencyDate: '',
+      isLoaded: false,
     };
   }
 
@@ -23,25 +24,47 @@ class App extends Component {
 
     let response = await API.get('/latest?base=USD');
     // console.log(response.data.rates);
-    this.setState({ rates: response.data.rates });
+    this.setState({ rates: response.data.rates, isLoaded: true });
     // console.log(this.state.rates);
   }
 
+  /* update state on currency selection */
   handleCurrency = (evt) => {
     console.log(evt.target.value);
-    this.setState({currencyBase: evt.target.value})
+    this.setState({ currencyBase: evt.target.value });
   };
 
+  /* update state on date selection */
   handleDate = (evt) => {
     console.log(evt.target.value);
-    this.setState({currencyDate: evt.target.value})
+    this.setState({ currencyDate: evt.target.value });
   };
 
-  handleSubmit = (evt) => {
-    console.log('Submit form')
+  /* Form submit, fetch new rates with date and currency selections */
+  handleSubmit = async (evt) => {
     evt.preventDefault();
-    console.log('currency and date:', this.state.currencyBase, this.state.currencyDate)
-  }
+
+    console.log('Submit form');
+    console.log(
+      'currency and date:',
+      this.state.currencyBase,
+      this.state.currencyDate
+    );
+
+    this.setState({isLoaded: false})
+
+    let response = await API.get(
+      `/${this.state.currencyDate}?base=${this.state.currencyBase}`
+    );
+
+    setTimeout(
+      function () {
+        this.setState({ rates: response.data.rates, isLoaded: true });
+      }.bind(this),
+      1000
+    )
+    console.log(this.state.rates);
+  };
 
   render() {
     // console.log(this.state);
@@ -67,17 +90,13 @@ class App extends Component {
 
             <div className="Form-field">
               <label htmlFor="date">Ingresá la fecha de cotización</label>
-              <input
-                type="date"
-                id="date"
-                onChange={this.handleDate}
-              />
+              <input type="date" id="date" onChange={this.handleDate} />
             </div>
 
             <Button label="Buscar cotizaciones" color="primary" />
           </form>
 
-          <Rates rates={this.state.rates} />
+          <Rates rates={this.state.rates} loader={this.state.isLoaded} />
 
           <div>
             <Button label="Ver más cotizaciones" color="secondary" />

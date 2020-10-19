@@ -3,10 +3,9 @@ import './Rates.scss';
 import RatesItem from './RatesItem';
 
 class Rates extends Component {
-
   /* generate country code based on currency name */
   setFlag = (countryCode) => {
-    return countryCode.slice(0,2).toLowerCase();
+    return countryCode.slice(0, 2).toLowerCase();
   };
 
   /* set 6 digits after decimal point */
@@ -42,7 +41,11 @@ class Rates extends Component {
   };
 
   render() {
-    return <div className="Rates">{this.createRates()}</div>;
+    return (
+      <div className="Rates">
+        {this.props.loader ? this.createRates() : 'Cargando cotizaciones...'}
+      </div>
+    );
   }
 }
 
