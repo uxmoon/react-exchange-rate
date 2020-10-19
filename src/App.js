@@ -51,7 +51,8 @@ function App() {
 
       <div>
         <button>Ver más cotizaciones</button>
-        <Button />
+        <Button label="Buscar cotizaciones" color="primary" />
+        <Button label="Ver más cotizaciones" color="secondary" />
       </div>
     </div>
   );
