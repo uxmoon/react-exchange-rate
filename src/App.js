@@ -10,8 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       rates: {},
-      currencyBase: '',
-      currencyDate: '',
+      currencyBase: 'USD',
+      currencyDate: 'latest',
       isLoaded: false,
     };
   }
@@ -27,6 +27,22 @@ class App extends Component {
     this.setState({ rates: response.data.rates, isLoaded: true });
     // console.log(this.state.rates);
   }
+
+  // addMoneda = (moneda) => {
+  //   this.setState({currencyBase: moneda})
+  //   console.log('Parent: ', this.state.currencyBase)
+  // }
+
+  addMoneda = (item) => {
+    console.log('ITEM', item)
+    this.setState(prevState => {
+      return {
+        item
+      }
+    })
+    console.log(this.state)
+  }
+
 
   /* update state on currency selection */
   handleCurrency = (evt) => {
@@ -72,6 +88,8 @@ class App extends Component {
       <div className="App">
         <div className="App-container">
           <h1 className="App-title">Histórico de cotizaciones</h1>
+
+          <Form addMoneda={this.addMoneda} />
 
           <form className="Form" onSubmit={this.handleSubmit}>
             <div className="Form-field">
