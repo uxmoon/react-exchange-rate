@@ -1,11 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Rates.scss';
+import RatesItem from './RatesItem';
 
 class Rates extends Component {
   render() {
-    return(
-      <p>Rates</p>
-    )
+    return (
+      <div className="Rates">
+        <div className="Rates-item">
+          <div>flag</div>
+          <div>Moneda</div>
+          <div>Valor</div>
+        </div>
+        <RatesItem />
+      </div>
+    );
   }
 }
 

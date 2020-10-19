@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div className="App">
         <div className="App-container">
@@ -56,7 +56,7 @@ class App extends Component {
             <Button label="Buscar cotizaciones" color="primary" />
           </form>
 
-          <Rates />
+          <Rates rates={this.state.rates} />
 
           <div className="Rates">
             <div className="Rates-item">
