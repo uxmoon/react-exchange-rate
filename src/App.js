@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import './Form.scss';
 import Button from './components/Button';
 
 function App() {
@@ -8,8 +9,8 @@ function App() {
       <div className="App-container">
         <h1 className="App-title">Histórico de cotizaciones</h1>
 
-        <form>
-          <div>
+        <form className="Form">
+          <div className="Form-field">
             <label htmlFor="currency">Selecciona la moneda de referencia</label>
             <select id="currency">
               <option value="">Moneda</option>
@@ -19,7 +20,7 @@ function App() {
             </select>
           </div>
 
-          <div>
+          <div className="Form-field">
             <label htmlFor="date">Ingresá la fecha de cotización</label>
             <input type="text" placeholder="DD / MM / YYYY" id="date" />
           </div>
