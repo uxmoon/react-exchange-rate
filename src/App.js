@@ -23,7 +23,7 @@ function App() {
           <input type="text" placeholder="DD / MM / YYYY" />
         </div>
 
-        <button>Buscar cotizaciones</button>
+        <Button label="Buscar cotizaciones" color="primary" />
       </form>
 
       <div>
@@ -50,8 +50,6 @@ function App() {
       </div>
 
       <div>
-        <button>Ver más cotizaciones</button>
-        <Button label="Buscar cotizaciones" color="primary" />
         <Button label="Ver más cotizaciones" color="secondary" />
       </div>
     </div>

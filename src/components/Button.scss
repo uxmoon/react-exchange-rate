@@ -1,3 +1,37 @@
+$color-primary: #ff673f;
+$color-primary-valid: #ff5f33;
+
 .Button {
   width: 100%;
+  font-size: 18px;
+  font-weight: 400;
+  border: 1px solid $color-primary-valid;
+  min-height: 56px;
+  border-radius: 1000px;
+  cursor: pointer;
+  box-shadow: 0px 8px 10px 0px rgba($color-primary, 0.25);
+  margin-bottom: 30px;
+  transition: all 0.2s ease-in-out;
+}
+
+.Button-primary {
+  background-color: $color-primary-valid;
+  color: #fff;
+
+  &:hover,
+  &:focus {
+    background-color: darken($color-primary-valid, 16%);
+  }
+}
+
+.Button-secondary {
+  background-color: #fff;
+  color: $color-primary-valid;
+
+  &:hover,
+  &:focus {
+    color: darken($color-primary-valid, 16%);
+    border-color: darken($color-primary-valid, 16%);
+    background-color: #f9f9f9;
+  }
 }
