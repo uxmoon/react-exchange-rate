@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import './Form.scss';
+import './Rates.scss';
 import Button from './components/Button';
 
 function App() {
@@ -28,23 +29,23 @@ function App() {
           <Button label="Buscar cotizaciones" color="primary" />
         </form>
 
-        <div>
-          <div>
+        <div className="Rates">
+          <div className="Rates-item">
             <div>flag</div>
             <div>Moneda</div>
             <div>Valor</div>
           </div>
-          <div>
+          <div className="Rates-item">
             <div>flag</div>
             <div>Moneda</div>
             <div>Valor</div>
           </div>
-          <div>
+          <div className="Rates-item">
             <div>flag</div>
             <div>Moneda</div>
             <div>Valor</div>
           </div>
-          <div>
+          <div className="Rates-item">
             <div>flag</div>
             <div>Moneda</div>
             <div>Valor</div>
