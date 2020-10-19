@@ -43,7 +43,15 @@ class Rates extends Component {
   render() {
     return (
       <div className="Rates">
-        {this.props.loader ? this.createRates() : 'Cargando cotizaciones...'}
+        {this.props.loader
+          ? this.createRates() :
+          <div className="Rates-loader">
+            <p className="Rates-loader-text">
+              Cargando cotizaciones
+            </p>
+            <div className="Rates-loader-animation"></div>
+          </div>
+        }
       </div>
     );
   }
