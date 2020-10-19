@@ -4,9 +4,9 @@ class RatesItem extends Component {
   render() {
     return (
       <div className="Rates-item">
-        <div>flag</div>
-        <div>moneda</div>
-        <div>valor</div>
+        <div>{this.props.flag}</div>
+        <div>{this.props.currency}</div>
+        <div>{this.props.num}</div>
       </div>
     )
   }

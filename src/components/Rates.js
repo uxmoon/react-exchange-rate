@@ -7,20 +7,24 @@ class Rates extends Component {
   createRates = () => {
     const rates = this.props.rates;
     const defaultCurrencies = ['CAD', 'GBP', 'USD', 'EUR'];
-    const item = [];
+    const items = [];
 
     for(let key in rates) {
       if(rates.hasOwnProperty(key) && defaultCurrencies.includes(key)) {
-        console.log(`currency: ${key}, rate: ${rates[key]} `)
+        // console.log(`currency: ${key}, rate: ${rates[key]} `)
+        items.push(
+          <RatesItem flag={key} currency={key} num={rates[key]} />
+        )
       }
     }
+
+    return items;
   }
 
   render() {
     return (
       <div className="Rates">
         {this.createRates()}
-        <RatesItem />
       </div>
     );
   }
