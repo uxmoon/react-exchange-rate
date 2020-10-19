@@ -13,12 +13,14 @@ function App() {
         <form className="Form">
           <div className="Form-field">
             <label htmlFor="currency">Selecciona la moneda de referencia</label>
-            <select id="currency">
-              <option value="">Moneda</option>
-              <option value="">Moneda</option>
-              <option value="">Moneda</option>
-              <option value="">Moneda</option>
-            </select>
+            <div className="Form-select">
+              <select id="currency">
+                <option value="">Moneda</option>
+                <option value="">Moneda</option>
+                <option value="">Moneda</option>
+                <option value="">Moneda</option>
+              </select>
+            </div>
           </div>
 
           <div className="Form-field">
