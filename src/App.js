@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 import './Form.scss';
-import './Rates.scss';
+import Rates from './components/Rates';
 import Button from './components/Button';
 import API from './api/exchangerate';
 
@@ -55,6 +55,8 @@ class App extends Component {
 
             <Button label="Buscar cotizaciones" color="primary" />
           </form>
+
+          <Rates />
 
           <div className="Rates">
             <div className="Rates-item">
