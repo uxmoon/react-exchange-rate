@@ -10,6 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       rates: {},
+      currencyBase: '',
+      currencyDate: ''
     };
   }
 
@@ -27,11 +29,19 @@ class App extends Component {
 
   handleCurrency = (evt) => {
     console.log(evt.target.value);
+    this.setState({currencyBase: evt.target.value})
   };
 
   handleDate = (evt) => {
     console.log(evt.target.value);
+    this.setState({currencyDate: evt.target.value})
   };
+
+  handleSubmit = (evt) => {
+    console.log('Submit form')
+    evt.preventDefault();
+    console.log('currency and date:', this.state.currencyBase, this.state.currencyDate)
+  }
 
   render() {
     // console.log(this.state);
@@ -40,7 +50,7 @@ class App extends Component {
         <div className="App-container">
           <h1 className="App-title">Histórico de cotizaciones</h1>
 
-          <form className="Form">
+          <form className="Form" onSubmit={this.handleSubmit}>
             <div className="Form-field">
               <label htmlFor="currency">
                 Selecciona la moneda de referencia
