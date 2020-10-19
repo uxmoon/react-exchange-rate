@@ -14,11 +14,16 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    API.get('/latest?base=USD')
-    .then((response) => {
-      console.log(response.data.rates)
-    })
+  async componentDidMount() {
+    // API.get('/latest?base=USD')
+    // .then((response) => {
+    //   console.log(response.data.rates)
+    // })
+
+    let response = await API.get('/latest?base=USD');
+    // console.log(response.data.rates);
+    this.setState({rates: response.data.rates});
+    // console.log(this.state.rates);
   }
 
   render() {
