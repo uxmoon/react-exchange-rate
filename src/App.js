@@ -7,6 +7,13 @@ import API from './api/exchangerate';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      rates: {}
+    }
+  }
+
   componentDidMount() {
     API.get('/latest?base=USD')
     .then((response) => {
@@ -15,6 +22,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="App">
         <div className="App-container">
