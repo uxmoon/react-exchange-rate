@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.scss';
-import './Form.scss';
 import Rates from './components/Rates';
 import Button from './components/Button';
+import Form from './components/Form';
 import API from './api/exchangerate';
 
 class App extends Component {
