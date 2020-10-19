@@ -3,14 +3,14 @@ import './App.scss';
 import './Form.scss';
 import './Rates.scss';
 import Button from './components/Button';
-import axios from 'axios';
+import API from './api/exchangerate';
 
 class App extends Component {
 
   componentDidMount() {
-    axios.get('https://api.exchangeratesapi.io/latest')
+    API.get('/latest?base=USD')
     .then((response) => {
-      console.log(response)
+      console.log(response.data.rates)
     })
   }
 
