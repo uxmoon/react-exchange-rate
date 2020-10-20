@@ -26,17 +26,16 @@ class Form extends Component {
     this.setState({ base: evt.target.value });
   };
 
-  /* handleDate = (evt) => {
-    // console.log(evt.target.value);
-    this.setState({ date: evt.target.value });
-  }; */
+  // handleDate = (evt) => {
+  //   // console.log(evt.target.value);
+  //   this.setState({ date: evt.target.value });
+  // };
 
   handleDate = (date) => {
     this.setState({
       date: date,
     }, () => {
-      let customDate = dayjs(this.state.date).format('DD/MM/YYYY');
-      console.log(customDate)
+      console.log(this.state)
     });
 
   };
@@ -53,12 +52,14 @@ class Form extends Component {
       <form onSubmit={this.handleSubmit} className="Form">
         <div className="Form-field">
           <label htmlFor="base">Selecciona la moneda de referencia</label>
+          <div className="Form-select">
           <select id="moneda" name="moneda" onChange={this.handleBase}>
             <option value="USD">USD - Dólar americano</option>
             <option value="CAD">CAD - Dólar canadiense</option>
             <option value="GBP">GBP - Libras esterlinas</option>
             <option value="EUR">EUR - Euro</option>
           </select>
+          </div>
         </div>
         <div className="Form-field">
           <label htmlFor="date">Ingresá la fecha de cotización</label>
@@ -66,6 +67,7 @@ class Form extends Component {
             <KeyboardDatePicker
               value={this.state.date}
               onChange={this.handleDate}
+              format="DD/MM/YYYY"
             />
           </MuiPickersUtilsProvider>
           {/* <input
