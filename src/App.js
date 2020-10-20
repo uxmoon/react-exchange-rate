@@ -4,6 +4,7 @@ import Rates from './components/Rates';
 import Button from './components/Button';
 import Form from './components/Form';
 import API from './api/exchangerate';
+// import CustomDate from './components/CustomDate';
 
 class App extends Component {
   constructor(props) {
@@ -19,41 +20,41 @@ class App extends Component {
   }
 
   /* get rates from API and update state */
-  async componentDidMount() {
-    let response = await API.get(
-      `/${this.state.currency.date}?base=${this.state.currency.base}`
-    );
-    this.setState({ rates: response.data.rates, isLoaded: true });
-    // console.log('component mounted', this.state);
-  }
+  // async componentDidMount() {
+  //   let response = await API.get(
+  //     `/${this.state.currency.date}?base=${this.state.currency.base}`
+  //   );
+  //   this.setState({ rates: response.data.rates, isLoaded: true });
+  //   // console.log('component mounted', this.state);
+  // }
 
-  /* Updated currency base and date based on child component and fetch new rates */
-  setCurrency = (items) => {
-    this.setState((prevState) => ({
-      currency: {
-        ...prevState.currency,
-        ...items,
-      },
-      isLoaded: false
-    }), () => {
-      // console.log('state was updated')
-      this.setNewRates();
-    });
+  // /* Updated currency base and date based on child component and fetch new rates */
+  // setCurrency = (items) => {
+  //   this.setState((prevState) => ({
+  //     currency: {
+  //       ...prevState.currency,
+  //       ...items,
+  //     },
+  //     isLoaded: false
+  //   }), () => {
+  //     // console.log('state was updated')
+  //     this.setNewRates();
+  //   });
 
-  };
+  // };
 
-  /* fetch new rates from API */
-  setNewRates = async () => {
-    let response = await API.get(
-      `/${this.state.currency.date}?base=${this.state.currency.base}`
-    );
-    setTimeout(
-      function() {
-        this.setState({ rates: response.data.rates, isLoaded: true });
-      }.bind(this),
-      1000
-    )
-  };
+  // /* fetch new rates from API */
+  // setNewRates = async () => {
+  //   let response = await API.get(
+  //     `/${this.state.currency.date}?base=${this.state.currency.base}`
+  //   );
+  //   setTimeout(
+  //     function() {
+  //       this.setState({ rates: response.data.rates, isLoaded: true });
+  //     }.bind(this),
+  //     1000
+  //   )
+  // };
 
   render() {
     return (
@@ -62,12 +63,12 @@ class App extends Component {
           <h1 className="App-title">Histórico de cotizaciones</h1>
 
           {/* pass setCurrency method as a prop */}
-          <Form action={this.setCurrency} />
+          {<Form action={this.setCurrency} />}
 
           {/* display default and updated rates */}
-          <Rates rates={this.state.rates} loader={this.state.isLoaded} />
+          {<Rates rates={this.state.rates} loader={this.state.isLoaded} />}
 
-          <Button label="Ver más cotizaciones" color="secondary" />
+          {<Button label="Ver más cotizaciones" color="secondary" />}
         </div>
       </div>
     );

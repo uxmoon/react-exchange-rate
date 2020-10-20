@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import './Form.scss';
 import Button from './Button';
 
+import dayjs from '@date-io/dayjs';
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider,
+} from '@material-ui/pickers';
+
 class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
       base: '',
-      date: '',
+      date: new Date(),
     };
   }
 
@@ -17,9 +23,15 @@ class Form extends Component {
     this.setState({ base: evt.target.value });
   };
 
-  handleDate = (evt) => {
+  /* handleDate = (evt) => {
     // console.log(evt.target.value);
     this.setState({ date: evt.target.value });
+  }; */
+
+  handleDate = (date) => {
+    this.setState({
+      date: date,
+    });
   };
 
   /* call method from parent component on form submit */
@@ -42,13 +54,19 @@ class Form extends Component {
         </div>
         <div className="Form-field">
           <label htmlFor="date">Ingresá la fecha de cotización</label>
-          <input
+          <MuiPickersUtilsProvider utils={dayjs}>
+            <KeyboardDatePicker
+              value={this.state.date}
+              onChange={this.handleDate}
+            />
+          </MuiPickersUtilsProvider>
+          {/* <input
             type="date"
             value={this.state.date}
             min="1999-01-01"
             max="2020-10-31"
             onChange={this.handleDate}
-          />
+          /> */}
         </div>
 
         <Button label="Buscar cotizaciones" color="primary" />
