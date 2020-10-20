@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Form.scss';
 import Button from './Button';
-
 import dayjs from '@date-io/dayjs';
 import {
   KeyboardDatePicker,
@@ -13,9 +12,13 @@ class Form extends Component {
     super(props);
     this.state = {
       base: '',
+      // date: ''
       date: new Date(),
+      // date: dayjs('2019-01-25').format('DD/MM/YYYY')
     };
   }
+
+  // dayjs('2019-01-25').format('DD/MM/YYYY') // '25/01/2019'
 
   /* handle form input fields and update state with new values  */
   handleBase = (evt) => {
@@ -31,7 +34,11 @@ class Form extends Component {
   handleDate = (date) => {
     this.setState({
       date: date,
+    }, () => {
+      let customDate = dayjs(this.state.date).format('DD/MM/YYYY');
+      console.log(customDate)
     });
+
   };
 
   /* call method from parent component on form submit */
@@ -41,6 +48,7 @@ class Form extends Component {
   };
 
   render() {
+    console.log(this.state)
     return (
       <form onSubmit={this.handleSubmit} className="Form">
         <div className="Form-field">
