@@ -67,7 +67,9 @@ class Form extends Component {
             <KeyboardDatePicker
               value={this.state.date}
               onChange={this.handleDate}
+              minDate="1999-01-01"
               format="DD/MM/YYYY"
+              disableFuture
             />
           </MuiPickersUtilsProvider>
           {/* <input
