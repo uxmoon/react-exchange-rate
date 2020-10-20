@@ -10,9 +10,13 @@ class App extends Component {
     super(props);
     this.state = {
       rates: {},
-      currencyBase: 'USD',
-      currencyDate: 'latest',
+      // currencyBase: 'USD',
+      // currencyDate: 'latest',
       isLoaded: false,
+      currency: {
+        base: 'USD',
+        date: 'latest',
+      },
     };
   }
 
@@ -22,65 +26,78 @@ class App extends Component {
     //   console.log(response.data.rates)
     // })
 
-    let response = await API.get('/latest?base=USD');
+    // let response = await API.get('/latest?base=USD');
+    let response = await API.get(
+      `/${this.state.currency.date}?base=${this.state.currency.base}`
+    );
     // console.log(response.data.rates);
     this.setState({ rates: response.data.rates, isLoaded: true });
     // console.log(this.state.rates);
+    console.log(this.state);
   }
 
-  // addMoneda = (moneda) => {
-  //   this.setState({currencyBase: moneda})
-  //   console.log('Parent: ', this.state.currencyBase)
-  // }
-
-  addMoneda = (item) => {
-    console.log('ITEM', item)
-    this.setState(prevState => {
-      return {
-        item
-      }
-    })
-    console.log(this.state)
-  }
-
+  /* custom method to update currency */
+  setCurrency = (items) => {
+    this.setState((prevState) => ({
+      currency: {
+        ...prevState.currency,
+        ...items,
+      },
+    }));
+    console.log(this.state);
+  };
 
   /* update state on currency selection */
-  handleCurrency = (evt) => {
-    console.log(evt.target.value);
-    this.setState({ currencyBase: evt.target.value });
-  };
+  // handleCurrency = (evt) => {
+  //   console.log(evt.target.value);
+  //   this.setState({ currencyBase: evt.target.value });
+  //   console.log(this.state);
+  // };
 
   /* update state on date selection */
-  handleDate = (evt) => {
-    console.log(evt.target.value);
-    this.setState({ currencyDate: evt.target.value });
-  };
+  // handleDate = (evt) => {
+  //   console.log(evt.target.value);
+  //   this.setState({ currencyDate: evt.target.value });
+  // };
 
   /* Form submit, fetch new rates with date and currency selections */
-  handleSubmit = async (evt) => {
-    evt.preventDefault();
+  // handleSubmit = async (evt) => {
+  //   evt.preventDefault();
 
-    console.log('Submit form');
-    console.log(
-      'currency and date:',
-      this.state.currencyBase,
-      this.state.currencyDate
-    );
+  //   console.log('Submit form');
+  //   console.log(
+  //     'currency and date:',
+  //     this.state.currencyBase,
+  //     this.state.currencyDate
+  //   );
 
-    this.setState({isLoaded: false})
+  //   this.setState({ isLoaded: false });
 
-    let response = await API.get(
-      `/${this.state.currencyDate}?base=${this.state.currencyBase}`
-    );
+  //   let response = await API.get(
+  //     `/${this.state.currencyDate}?base=${this.state.currencyBase}`
+  //   );
 
-    setTimeout(
-      function () {
-        this.setState({ rates: response.data.rates, isLoaded: true });
-      }.bind(this),
-      1000
-    )
-    console.log(this.state.rates);
-  };
+  //   setTimeout(
+  //     function () {
+  //       this.setState({ rates: response.data.rates, isLoaded: true });
+  //     }.bind(this),
+  //     1000
+  //   );
+  //   console.log(this.state.rates);
+  // };
+
+  // renderItems = () => {
+  //   return (
+  //     <ul>
+  //     {this.state.currency.map(item => (
+  //       <li key="1">
+  //         Base: {item.base},
+  //         Date: {item.date}
+  //       </li>
+  //       ))}
+  //     </ul>
+  //   )
+  // }
 
   render() {
     // console.log(this.state);
@@ -88,10 +105,11 @@ class App extends Component {
       <div className="App">
         <div className="App-container">
           <h1 className="App-title">Histórico de cotizaciones</h1>
+          {/* this.renderItems() */}
 
-          <Form addMoneda={this.addMoneda} />
+          <Form action={this.setCurrency} />
 
-          <form className="Form" onSubmit={this.handleSubmit}>
+          {/* <form className="Form" onSubmit={this.handleSubmit}>
             <div className="Form-field">
               <label htmlFor="currency">
                 Selecciona la moneda de referencia
@@ -112,7 +130,7 @@ class App extends Component {
             </div>
 
             <Button label="Buscar cotizaciones" color="primary" />
-          </form>
+          </form> */}
 
           <Rates rates={this.state.rates} loader={this.state.isLoaded} />
 

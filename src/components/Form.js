@@ -4,59 +4,51 @@ import './Form.scss';
 class Form extends Component {
   constructor(props) {
     super(props);
-    this.myRef = React.createRef();
+    // this.myRef = React.createRef();
     this.state = {
-      currencyBase: '',
+      base: '',
+      date: '',
     };
   }
 
-  handleChange = (evt) => {
-    console.log('handle change', evt.target.name, evt.target.value);
-    this.setState({ [evt.target.name]: evt.target.value });
-  };
 
-  // handleMoneda = (evt) => {
-  //   console.log('Moneda seleccionada: ', evt.target.value);
-  //   this.setState({moneda: evt.target.value})
-  // };
+  handleChange = (evt) => {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    });
+  };
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log('moneda seleccionada', this.state.currencyBase);
-    this.props.addMoneda(this.state);
-    // this.props.addMoneda(this.state.moneda);
-    // console.log('submit nueva moneda', this.state);
+    this.props.action(this.state);
+    // this.setState({ base: "", date: "" });
+    console.log("State on form submit", this.state);
   };
 
-  // handleClick = () => {
-  //   console.log('handle click', this.myRef.current.value)
-  //   let moneda = this.myRef.current.value
-  //   this.setState({moneda: moneda})
-  //   console.log(this.state)
-  // }
-
   render() {
+    // console.log('form comp', this.state);
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="moneda">Seleccionar fecha</label>
-        {/* <select id="moneda" name="moneda" onChange={this.handleMoneda}> */}
-        {/* <select id="moneda" name="moneda" ref={this.myRef}> */}
-        {/* <select id="moneda" name="moneda" onChange={this.handleChange}>
-          <option value="USD">USD - Dólar americano</option>
-          <option value="CAD">CAD - Dólar canadiense</option>
-          <option value="GBP">GBP - Libras esterlinas</option>
-          <option value="EUR">EUR - Euro</option>
-        </select> */}
+        <div>
+          <label htmlFor="base">Configurar Moneda, ej: CAD</label>
+        </div>
         <input
-          type="text"
-          id="moneda"
-          name="currencyBase"
-          value={this.state.currencyBase}
+          id="base"
+          name="base"
+          value={this.state.base}
           onChange={this.handleChange}
         />
         <div>
-          {/* <button onClick={this.handleClick}>Nueva moneda</button> */}
-          <button>Nueva moneda</button>
+          <label htmlFor="date">Configurar fecha, ej: 2019-01-01</label>
+        </div>
+        <input
+          id="date"
+          name="date"
+          value={this.state.date}
+          onChange={this.handleChange}
+        />
+        <div>
+          <button>Configurar moneda</button>
         </div>
       </form>
     );
