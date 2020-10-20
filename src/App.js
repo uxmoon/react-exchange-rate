@@ -44,8 +44,12 @@ class App extends Component {
         ...items,
       },
     }));
-    console.log(this.state);
+
   };
+
+  componentDidUpdate() {
+    console.log('component updated', this.state)
+  }
 
   /* update state on currency selection */
   // handleCurrency = (evt) => {
@@ -100,7 +104,6 @@ class App extends Component {
   // }
 
   render() {
-    // console.log(this.state);
     return (
       <div className="App">
         <div className="App-container">
