@@ -33,7 +33,7 @@ class Form extends Component {
 
   handleDate = (date) => {
     this.setState({
-      date: date,
+      date: date.format('DD/MM/YYYY'),
     }, () => {
       console.log(this.state)
     });
