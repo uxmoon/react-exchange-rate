@@ -13,24 +13,17 @@ class Form extends Component {
     super(props);
     this.state = {
       base: 'USD',
-      // date: new Date(),
-      // date: ''
-      // date: dayjs().format('DD/MM/YYYY')
       date: dayjs().format('YYYY-MM-DD')
     };
   }
 
-  /* handle form input fields and update state with new values  */
+  /* Currency base - update value on dropdown selection  */
   handleBase = (evt) => {
     // console.log(evt.target.value);
     this.setState({ base: evt.target.value });
   };
 
-  // handleDate = (evt) => {
-  //   // console.log(evt.target.value);
-  //   this.setState({ date: evt.target.value });
-  // };
-
+  /* Currency date - update value on Datepicker selection */
   handleDate = (date) => {
     this.setState({
       date: date.format('YYYY-MM-DD'),
@@ -45,13 +38,11 @@ class Form extends Component {
     this.props.action(this.state);
   };
 
-  componentDidMount() {
-    let currentDate = dayjs().format('YYYY-MM-DD');
-    console.log(currentDate)
-  }
+  // componentDidMount() {
+  //   console.log(this.state)
+  // }
 
   render() {
-    // console.log(this.state)
     return (
       <form onSubmit={this.handleSubmit} className="Form">
         <div className="Form-field">
@@ -76,15 +67,7 @@ class Form extends Component {
               disableFuture
             />
           </MuiPickersUtilsProvider>
-          {/* <input
-            type="date"
-            value={this.state.date}
-            min="1999-01-01"
-            max="2020-10-31"
-            onChange={this.handleDate}
-          /> */}
         </div>
-
         <Button label="Buscar cotizaciones" color="primary" />
       </form>
     );

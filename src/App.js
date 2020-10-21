@@ -4,7 +4,6 @@ import Rates from './components/Rates';
 import Button from './components/Button';
 import Form from './components/Form';
 import API from './api/exchangerate';
-// import CustomDate from './components/CustomDate';
 
 class App extends Component {
   constructor(props) {
@@ -28,7 +27,10 @@ class App extends Component {
     // console.log('component mounted', this.state);
   }
 
-  /* Updated currency base and date based on child component and fetch new rates */
+  /*
+    - Update currency date and base from child component
+    - Fetch new rates after state is updated
+  */
   setCurrency = (items) => {
     this.setState((prevState) => ({
       currency: {
@@ -43,7 +45,7 @@ class App extends Component {
 
   };
 
-  /* fetch new rates from API */
+  /* Fetch new rates */
   setNewRates = async () => {
     let response = await API.get(
       `/${this.state.currency.date}?base=${this.state.currency.base}`
