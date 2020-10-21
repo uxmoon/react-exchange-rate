@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './Form.scss';
 import Button from './Button';
-import dayjs from '@date-io/dayjs';
+import dayjsUtils from '@date-io/dayjs';
+import dayjs from 'dayjs';
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
@@ -12,24 +13,17 @@ class Form extends Component {
     super(props);
     this.state = {
       base: 'USD',
-      // date: new Date(),
-      // date: dayjs('2020-01-01T12:00:00').format('YYYY-MM-DD'),
-      date: dayjs().format('YYYY-MM-DD'),
-      // date: dayjs("12-25-1995", "MM-DD-YYYY")
+      date: dayjs().format('YYYY-MM-DD')
     };
   }
 
-  /* handle form input fields and update state with new values  */
+  /* Currency base - update value on dropdown selection  */
   handleBase = (evt) => {
     // console.log(evt.target.value);
     this.setState({ base: evt.target.value });
   };
 
-  // handleDate = (evt) => {
-  //   // console.log(evt.target.value);
-  //   this.setState({ date: evt.target.value });
-  // };
-
+  /* Currency date - update value on Datepicker selection */
   handleDate = (date) => {
     this.setState({
       date: date.format('YYYY-MM-DD'),
@@ -44,8 +38,11 @@ class Form extends Component {
     this.props.action(this.state);
   };
 
+  // componentDidMount() {
+  //   console.log(this.state)
+  // }
+
   render() {
-    // console.log(this.state)
     return (
       <form onSubmit={this.handleSubmit} className="Form">
         <div className="Form-field">
@@ -61,7 +58,7 @@ class Form extends Component {
         </div>
         <div className="Form-field">
           <label htmlFor="date">Ingresá la fecha de cotización</label>
-          <MuiPickersUtilsProvider utils={dayjs}>
+          <MuiPickersUtilsProvider utils={dayjsUtils}>
             <KeyboardDatePicker
               value={this.state.date}
               onChange={this.handleDate}
@@ -70,15 +67,7 @@ class Form extends Component {
               disableFuture
             />
           </MuiPickersUtilsProvider>
-          {/* <input
-            type="date"
-            value={this.state.date}
-            min="1999-01-01"
-            max="2020-10-31"
-            onChange={this.handleDate}
-          /> */}
         </div>
-
         <Button label="Buscar cotizaciones" color="primary" />
       </form>
     );
