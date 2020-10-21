@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Rates.scss';
 import RatesItem from './RatesItem';
-import Button from './Button';
 
 class Rates extends Component {
   constructor(props) {
@@ -104,7 +103,7 @@ class Rates extends Component {
           </div>}
 
         <div className={`Rates-list ${this.state.showMore ? 'is-active' : ''}`}>
-          {this.createRates()}
+          {this.createRates() }
         </div>
 
         <button className="Button Button-secondary" onClick={this.handleToggle}>
