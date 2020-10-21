@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './Form.scss';
 import Button from './Button';
-import dayjs from '@date-io/dayjs';
+import dayjsUtils from '@date-io/dayjs';
+import dayjs from 'dayjs';
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
@@ -12,9 +13,10 @@ class Form extends Component {
     super(props);
     this.state = {
       base: 'USD',
-      date: new Date(),
+      // date: new Date(),
       // date: ''
-      // date: dayjs('2019-01-25').format('DD/MM/YYYY')
+      // date: dayjs().format('DD/MM/YYYY')
+      date: dayjs().format('YYYY-MM-DD')
     };
   }
 
@@ -43,6 +45,11 @@ class Form extends Component {
     this.props.action(this.state);
   };
 
+  componentDidMount() {
+    let currentDate = dayjs().format('YYYY-MM-DD');
+    console.log(currentDate)
+  }
+
   render() {
     // console.log(this.state)
     return (
@@ -60,7 +67,7 @@ class Form extends Component {
         </div>
         <div className="Form-field">
           <label htmlFor="date">Ingresá la fecha de cotización</label>
-          <MuiPickersUtilsProvider utils={dayjs}>
+          <MuiPickersUtilsProvider utils={dayjsUtils}>
             <KeyboardDatePicker
               value={this.state.date}
               onChange={this.handleDate}
