@@ -48,13 +48,50 @@ class Form extends Component {
   }
 
   createRates = () => {
+    const currencyNames = {
+      CAD: 'Dólar Canadiense',
+      HKD: 'Dólar Hong Kong',
+      ISK: 'Corona Islandesa',
+      PHP: 'Peso Filipino',
+      DKK: 'Corona Danesa',
+      HUF: 'Forinto',
+      CZK: 'Corona Checa',
+      GBP: 'Libra Esterlina',
+      RON: 'Leu Rumano',
+      SEK: 'Corona Sueca',
+      IDR: 'Rupia Indonesia',
+      INR: 'Rupia India',
+      BRL: 'Real Brasileño',
+      RUB: 'Rublo',
+      HRK: 'Kruna Croata',
+      JPY: 'Yen',
+      THB: 'Bat Tailandés',
+      CHF: 'Franco Suizo',
+      EUR: 'Euro',
+      MYR: 'Ringit',
+      BGN: 'Leva Búlgaro',
+      TRY: 'Lira Turca',
+      CNY: 'Yuan',
+      NOK: 'Corona Noruega',
+      NZD: 'Dólar de Nueva Zelanda',
+      ZAR: 'Rand',
+      USD: 'Dólar estadounidense',
+      MXN: 'Peso Mexicano',
+      SGD: 'Dólar singapurense',
+      AUD: 'Dólar australiano',
+      ILS: 'Nuevo séquel',
+      KRW: 'Won surcoreano',
+      PLN: 'Zloty',
+    };
+
     const rates = this.props.rates;
     const items = [];
 
     for (let key in rates) {
-      if (rates.hasOwnProperty(key)) {
+      // if (rates.hasOwnProperty(key)) {
+      if (rates.hasOwnProperty(key) && currencyNames.hasOwnProperty(key)) {
         items.push(
-          <option value={key} key={key}>{key}</option>
+          <option value={key} key={key}>{currencyNames[key]} ({key})</option>
         );
       }
     }
