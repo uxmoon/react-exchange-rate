@@ -14,16 +14,22 @@ class App extends Component {
         base: 'USD',
         date: 'latest',
       },
+      errorMessage: '',
     };
   }
 
   /* get rates from API and update state */
   async componentDidMount() {
-    let response = await API.get(
-      `/${this.state.currency.date}?base=${this.state.currency.base}`
-    );
-    this.setState({ rates: response.data.rates, isLoaded: true });
-    // console.log('component mounted', this.state);
+    try {
+      let response = await API.get(
+        `/${this.state.currency.date}?base=${this.state.currency.base}`
+      );
+      this.setState({ rates: response.data.rates, isLoaded: true });
+      // console.log('component mounted', this.state);
+    } catch (error) {
+      this.setState({ errorMessage: error.message });
+      console.log(error);
+    }
   }
 
   /*
@@ -31,16 +37,19 @@ class App extends Component {
     - Fetch new rates after state is updated
   */
   setCurrency = (items) => {
-    this.setState((prevState) => ({
-      currency: {
-        ...prevState.currency,
-        ...items,
-      },
-      isLoaded: false
-    }), () => {
-      // console.log('state was updated')
-      this.setNewRates();
-    });
+    this.setState(
+      (prevState) => ({
+        currency: {
+          ...prevState.currency,
+          ...items,
+        },
+        isLoaded: false,
+      }),
+      () => {
+        // console.log('state was updated')
+        this.setNewRates();
+      }
+    );
   };
 
   /* Fetch new rates */
@@ -49,12 +58,16 @@ class App extends Component {
       `/${this.state.currency.date}?base=${this.state.currency.base}`
     );
     setTimeout(
-      function() {
+      function () {
         this.setState({ rates: response.data.rates, isLoaded: true });
       }.bind(this),
       1000
-    )
+    );
   };
+
+  // componentDidUpdate() {
+  //   console.log(this.state)
+  // }
 
   render() {
     return (
@@ -65,8 +78,12 @@ class App extends Component {
           {/* pass setCurrency method as a prop */}
           {<Form action={this.setCurrency} rates={this.state.rates} />}
 
+          {this.state.errorMessage
+            ? '<p>Ocurrió un error al obtener las cotizaciones. Intente mas tarde.<p>'
+            : <Rates rates={this.state.rates} loader={this.state.isLoaded} />
+          }
           {/* display default and updated rates */}
-          {<Rates rates={this.state.rates} loader={this.state.isLoaded} />}
+          {/* <Rates rates={this.state.rates} loader={this.state.isLoaded} /> */}
         </div>
       </div>
     );
