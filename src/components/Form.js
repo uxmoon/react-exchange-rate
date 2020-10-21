@@ -11,14 +11,12 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      base: '',
-      // date: ''
+      base: 'USD',
       date: new Date(),
+      // date: ''
       // date: dayjs('2019-01-25').format('DD/MM/YYYY')
     };
   }
-
-  // dayjs('2019-01-25').format('DD/MM/YYYY') // '25/01/2019'
 
   /* handle form input fields and update state with new values  */
   handleBase = (evt) => {
@@ -33,11 +31,10 @@ class Form extends Component {
 
   handleDate = (date) => {
     this.setState({
-      date: date.format('DD/MM/YYYY'),
+      date: date.format('YYYY-MM-DD'),
     }, () => {
-      console.log(this.state)
+      console.log(this.state);
     });
-
   };
 
   /* call method from parent component on form submit */
