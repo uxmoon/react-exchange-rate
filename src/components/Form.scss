@@ -91,3 +91,16 @@ $color-primary: #ff673f;
 .MuiInput-underline.Mui-focused:after {
   display: none;
 }
+
+/* Color overrides */
+
+.MuiPickersBasePicker-container {
+  .MuiPickersToolbar-toolbar,
+  .MuiPickersDay-daySelected {
+    background-color: $color-primary;
+  }
+}
+
+.MuiButton-label {
+  color: $color-primary;
+}

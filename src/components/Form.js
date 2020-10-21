@@ -119,11 +119,13 @@ class Form extends Component {
           <label htmlFor="date">Ingresá la fecha de cotización</label>
           <MuiPickersUtilsProvider utils={dayjsUtils}>
             <KeyboardDatePicker
+              // variant="inline"
               value={this.state.date}
               onChange={this.handleDate}
               minDate="1999-01-01"
               format="DD/MM/YYYY"
               disableFuture
+              cancelLabel="Cancelar"
             />
           </MuiPickersUtilsProvider>
         </div>
