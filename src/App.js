@@ -4,6 +4,7 @@ import Rates from './components/Rates';
 import Button from './components/Button';
 import Form from './components/Form';
 import API from './api/exchangerate';
+// import CustomDate from './components/CustomDate';
 
 class App extends Component {
   constructor(props) {
@@ -62,12 +63,12 @@ class App extends Component {
           <h1 className="App-title">Histórico de cotizaciones</h1>
 
           {/* pass setCurrency method as a prop */}
-          <Form action={this.setCurrency} />
+          {<Form action={this.setCurrency} />}
 
           {/* display default and updated rates */}
-          <Rates rates={this.state.rates} loader={this.state.isLoaded} />
+          {<Rates rates={this.state.rates} loader={this.state.isLoaded} />}
 
-          <Button label="Ver más cotizaciones" color="secondary" />
+          {<Button label="Ver más cotizaciones" color="secondary" />}
         </div>
       </div>
     );
