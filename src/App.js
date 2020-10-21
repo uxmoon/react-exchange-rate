@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
 import Rates from './components/Rates';
-import Button from './components/Button';
 import Form from './components/Form';
 import API from './api/exchangerate';
 
@@ -42,7 +41,6 @@ class App extends Component {
       // console.log('state was updated')
       this.setNewRates();
     });
-
   };
 
   /* Fetch new rates */
@@ -65,12 +63,10 @@ class App extends Component {
           <h1 className="App-title">Histórico de cotizaciones</h1>
 
           {/* pass setCurrency method as a prop */}
-          {<Form action={this.setCurrency} />}
+          {<Form action={this.setCurrency} rates={this.state.rates} />}
 
           {/* display default and updated rates */}
           {<Rates rates={this.state.rates} loader={this.state.isLoaded} />}
-
-          {<Button label="Ver más cotizaciones" color="secondary" />}
         </div>
       </div>
     );
