@@ -20,41 +20,41 @@ class App extends Component {
   }
 
   /* get rates from API and update state */
-  // async componentDidMount() {
-  //   let response = await API.get(
-  //     `/${this.state.currency.date}?base=${this.state.currency.base}`
-  //   );
-  //   this.setState({ rates: response.data.rates, isLoaded: true });
-  //   // console.log('component mounted', this.state);
-  // }
+  async componentDidMount() {
+    let response = await API.get(
+      `/${this.state.currency.date}?base=${this.state.currency.base}`
+    );
+    this.setState({ rates: response.data.rates, isLoaded: true });
+    // console.log('component mounted', this.state);
+  }
 
-  // /* Updated currency base and date based on child component and fetch new rates */
-  // setCurrency = (items) => {
-  //   this.setState((prevState) => ({
-  //     currency: {
-  //       ...prevState.currency,
-  //       ...items,
-  //     },
-  //     isLoaded: false
-  //   }), () => {
-  //     // console.log('state was updated')
-  //     this.setNewRates();
-  //   });
+  /* Updated currency base and date based on child component and fetch new rates */
+  setCurrency = (items) => {
+    this.setState((prevState) => ({
+      currency: {
+        ...prevState.currency,
+        ...items,
+      },
+      isLoaded: false
+    }), () => {
+      // console.log('state was updated')
+      this.setNewRates();
+    });
 
-  // };
+  };
 
-  // /* fetch new rates from API */
-  // setNewRates = async () => {
-  //   let response = await API.get(
-  //     `/${this.state.currency.date}?base=${this.state.currency.base}`
-  //   );
-  //   setTimeout(
-  //     function() {
-  //       this.setState({ rates: response.data.rates, isLoaded: true });
-  //     }.bind(this),
-  //     1000
-  //   )
-  // };
+  /* fetch new rates from API */
+  setNewRates = async () => {
+    let response = await API.get(
+      `/${this.state.currency.date}?base=${this.state.currency.base}`
+    );
+    setTimeout(
+      function() {
+        this.setState({ rates: response.data.rates, isLoaded: true });
+      }.bind(this),
+      1000
+    )
+  };
 
   render() {
     return (
