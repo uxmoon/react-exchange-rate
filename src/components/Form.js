@@ -12,9 +12,10 @@ class Form extends Component {
     super(props);
     this.state = {
       base: 'USD',
-      date: new Date(),
-      // date: ''
-      // date: dayjs('2019-01-25').format('DD/MM/YYYY')
+      // date: new Date(),
+      // date: dayjs('2020-01-01T12:00:00').format('YYYY-MM-DD'),
+      date: dayjs().format('YYYY-MM-DD'),
+      // date: dayjs("12-25-1995", "MM-DD-YYYY")
     };
   }
 
