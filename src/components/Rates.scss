@@ -75,3 +75,13 @@ $color-border: #e9e9e9;
     transform: rotate(359deg);
   }
 }
+
+/* More rates */
+
+.Rates-list {
+  display: none;
+}
+
+.Rates-list.is-active {
+  display: block;
+}
