@@ -20,7 +20,9 @@ class Form extends Component {
   /* Currency base - update value on dropdown selection  */
   handleBase = (evt) => {
     // console.log(evt.target.value);
-    this.setState({ base: evt.target.value });
+    if(evt.target.value) {
+      this.setState({ base: evt.target.value });
+    }
   };
 
   /* Currency date - update value on Datepicker selection */
@@ -41,6 +43,24 @@ class Form extends Component {
   // componentDidMount() {
   //   console.log(this.state)
   // }
+  componentDidUpdate() {
+    console.log(this.state)
+  }
+
+  createRates = () => {
+    const rates = this.props.rates;
+    const items = [];
+
+    for (let key in rates) {
+      if (rates.hasOwnProperty(key)) {
+        items.push(
+          <option value={key} key={key}>{key}</option>
+        );
+      }
+    }
+
+    return items;
+  };
 
   render() {
     return (
@@ -49,10 +69,12 @@ class Form extends Component {
           <label htmlFor="base">Selecciona la moneda de referencia</label>
           <div className="Form-select">
           <select id="moneda" name="moneda" onChange={this.handleBase}>
-            <option value="USD">USD - Dólar americano</option>
+            <option value="" defaultValue>Seleccionar moneda</option>
+            {/* <option value="USD">USD - Dólar americano</option>
             <option value="CAD">CAD - Dólar canadiense</option>
             <option value="GBP">GBP - Libras esterlinas</option>
-            <option value="EUR">EUR - Euro</option>
+            <option value="EUR">EUR - Euro</option> */}
+            {this.createRates()}
           </select>
           </div>
         </div>

@@ -69,15 +69,6 @@ class Rates extends Component {
     return items;
   };
 
-  componentDidUpdate() {
-    let loader = this.props.loader;
-    if(loader) {
-      this.setState((prevState) => ({
-        showMore: !prevState.showMore
-      }))
-    }
-  }
-
   /* show more currencies */
   handleToggle = () => {
     console.log('show/hide currencies');
@@ -87,7 +78,7 @@ class Rates extends Component {
   };
 
   componentDidUpdate() {
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   render() {
