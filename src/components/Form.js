@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Form.scss';
 import Button from './Button';
 import dayjsUtils from '@date-io/dayjs';
+import dayjsLocale from 'dayjs/locale/es';
 import dayjs from 'dayjs';
 import {
   KeyboardDatePicker,
@@ -20,7 +21,7 @@ class Form extends Component {
   /* Currency base - update value on dropdown selection  */
   handleBase = (evt) => {
     // console.log(evt.target.value);
-    if(evt.target.value) {
+    if (evt.target.value) {
       this.setState({ base: evt.target.value });
     }
   };
@@ -29,8 +30,6 @@ class Form extends Component {
   handleDate = (date) => {
     this.setState({
       date: date.format('YYYY-MM-DD'),
-    }, () => {
-      console.log(this.state);
     });
   };
 
@@ -43,9 +42,9 @@ class Form extends Component {
   // componentDidMount() {
   //   console.log(this.state)
   // }
-  componentDidUpdate() {
-    console.log(this.state)
-  }
+  // componentDidUpdate() {
+  //   console.log(this.state);
+  // }
 
   createRates = () => {
     const currencyNames = {
@@ -88,10 +87,11 @@ class Form extends Component {
     const items = [];
 
     for (let key in rates) {
-      // if (rates.hasOwnProperty(key)) {
       if (rates.hasOwnProperty(key) && currencyNames.hasOwnProperty(key)) {
         items.push(
-          <option value={key} key={key}>{currencyNames[key]} ({key})</option>
+          <option value={key} key={key}>
+            {currencyNames[key]} ({key})
+          </option>
         );
       }
     }
@@ -105,19 +105,17 @@ class Form extends Component {
         <div className="Form-field">
           <label htmlFor="base">Selecciona la moneda de referencia</label>
           <div className="Form-select">
-          <select id="moneda" name="moneda" onChange={this.handleBase}>
-            <option value="" defaultValue>Seleccionar moneda</option>
-            {/* <option value="USD">USD - Dólar americano</option>
-            <option value="CAD">CAD - Dólar canadiense</option>
-            <option value="GBP">GBP - Libras esterlinas</option>
-            <option value="EUR">EUR - Euro</option> */}
-            {this.createRates()}
-          </select>
+            <select id="moneda" name="moneda" onChange={this.handleBase}>
+              <option value="" defaultValue>
+                Seleccionar moneda
+              </option>
+              {this.createRates()}
+            </select>
           </div>
         </div>
         <div className="Form-field">
           <label htmlFor="date">Ingresá la fecha de cotización</label>
-          <MuiPickersUtilsProvider utils={dayjsUtils}>
+          <MuiPickersUtilsProvider locale={dayjsLocale} utils={dayjsUtils}>
             <KeyboardDatePicker
               // variant="inline"
               value={this.state.date}
