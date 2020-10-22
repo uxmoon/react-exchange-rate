@@ -48,6 +48,20 @@ the current date.
 
 - Create a button component to display where needed like *Form* and *Rates* component.
 
+## UX/UI
+
+- Added a loader animation while fetching new rates.
+- Added a setTimeout to force at least 1 second when fetching new rates after user selection.
+- Added human-friendly message when an error happens while fetching new rates.
+
+## Enhancements
+
+List of suggestions to enhance the app from a Usability point of view.
+
+- Disable or hide secondary button when fetching new rates
+- Fix color contrast for buttons (accessibility issue)
+- Toggle visibility for secondary rates table using aria-hidden attributes instead of using `display none/block`.
+
 ## Resources
 
 - **Datepicker**: [Material-UI Pickers](https://material-ui-pickers.dev/) and [day.js](https://day.js.org/)
