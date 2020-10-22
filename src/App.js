@@ -12,7 +12,7 @@ class App extends Component {
       rates: {},
       isLoaded: false,
       currency: {
-        base: 'USDaa',
+        base: 'USD',
         date: 'latest',
       },
       errorMessage: '',
