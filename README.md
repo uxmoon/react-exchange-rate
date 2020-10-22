@@ -4,7 +4,7 @@ This project was created using [Create React App](https://github.com/facebook/cr
 
 This app uses a [Foreign exchange rates API](https://exchangeratesapi.io/) free service for current and historical foreign exchange rates.
 
-:rocket: [View Demo](https://uxmoon-react-exchange-rates.netlify.app/)
+[View Demo](https://uxmoon-react-exchange-rates.netlify.app/) :rocket:
 
 ## Requirements
 
@@ -47,6 +47,10 @@ the current date.
 **Button.js**
 
 - Create a button component to display where needed like *Form* and *Rates* component.
+
+**Message.js**
+
+- Added generic message component to display status when an error occurs while fetching new rates.
 
 ## UX/UI
 
