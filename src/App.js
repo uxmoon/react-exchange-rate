@@ -37,19 +37,12 @@ class App extends Component {
     - Fetch new rates after state is updated
   */
   setCurrency = (items) => {
-    this.setState(
-      (prevState) => ({
-        currency: {
-          ...prevState.currency,
-          ...items,
-        },
-        isLoaded: false,
-      }),
-      () => {
-        // console.log('state was updated')
-        this.setNewRates();
-      }
-    );
+    this.setState({
+      currency: items,
+      isLoaded: false
+    }, () => {
+      this.setNewRates();
+    })
   };
 
   /* Fetch new rates */
@@ -78,12 +71,11 @@ class App extends Component {
           {/* pass setCurrency method as a prop */}
           {<Form action={this.setCurrency} rates={this.state.rates} />}
 
+          {/* display default and updated rates */}
           {this.state.errorMessage
-            ? '<p>Ocurrió un error al obtener las cotizaciones. Intente mas tarde.<p>'
+            ? <p>Ocurrió un error al obtener las cotizaciones. Intente mas tarde.</p>
             : <Rates rates={this.state.rates} loader={this.state.isLoaded} />
           }
-          {/* display default and updated rates */}
-          {/* <Rates rates={this.state.rates} loader={this.state.isLoaded} /> */}
         </div>
       </div>
     );
