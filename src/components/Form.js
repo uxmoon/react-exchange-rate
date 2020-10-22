@@ -46,6 +46,7 @@ class Form extends Component {
   //   console.log(this.state);
   // }
 
+  /* Create dropdown options for currencies */
   createRates = () => {
     const currencyNames = {
       CAD: 'Dólar Canadiense',
