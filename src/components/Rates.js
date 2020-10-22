@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Rates.scss';
 import RatesItem from './RatesItem';
+import Button from './Button';
 
 class Rates extends Component {
   constructor(props) {
@@ -25,35 +26,14 @@ class Rates extends Component {
     }
   };
 
-  createRatesDefault = () => {
+  createRatesDefault = (isDefault = false) => {
     const rates = this.props.rates;
     const defaultCurrencies = ['CAD', 'GBP', 'USD', 'EUR'];
     const items = [];
 
     for (let key in rates) {
-      if (rates.hasOwnProperty(key) && defaultCurrencies.includes(key)) {
-        // console.log(`currency: ${key}, rate: ${rates[key]} `)
-        items.push(
-          <RatesItem
-            key={key}
-            flag={this.setFlag(key)}
-            currency={key}
-            num={this.setDigits(rates[key])}
-          />
-        );
-      }
-    }
-
-    return items;
-  };
-
-  createRates = () => {
-    const rates = this.props.rates;
-    const defaultCurrencies = ['CAD', 'GBP', 'USD', 'EUR'];
-    const items = [];
-
-    for (let key in rates) {
-      if (rates.hasOwnProperty(key) && !defaultCurrencies.includes(key)) {
+      const setDefault = isDefault ? defaultCurrencies.includes(key) : !defaultCurrencies.includes(key);
+      if (rates.hasOwnProperty(key) && setDefault) {
         // console.log(`currency: ${key}, rate: ${rates[key]} `)
         items.push(
           <RatesItem
@@ -71,21 +51,27 @@ class Rates extends Component {
 
   /* show more currencies */
   handleToggle = () => {
-    console.log('show/hide currencies');
+    // console.log('show/hide currencies');
     this.setState((prevState) => ({
       showMore: !prevState.showMore,
     }));
   };
 
+  /* Hide additional rates when fetching new rates */
   componentDidUpdate() {
     // console.log(this.state);
+    if(this.props.loader !== true && this.state.showMore === true) {
+      this.setState({showMore: false})
+    }
   }
 
   render() {
     return (
       <div className="Rates">
+
+        {/* Display default rates for USD, CAD, GBP and EUR */}
         {this.props.loader
-          ? this.createRatesDefault() :
+          ? this.createRatesDefault(true) :
           <div className="Rates-loader">
             <p className="Rates-loader-text">
               Cargando cotizaciones
@@ -93,16 +79,16 @@ class Rates extends Component {
             <div className="Rates-loader-animation"></div>
           </div>}
 
+        {/* Display additional rates for all other currencies */}
         <div className={`Rates-list ${this.state.showMore ? 'is-active' : ''}`}>
-          {this.createRates() }
+          {this.createRatesDefault() }
         </div>
 
-        <button className="Button Button-secondary" onClick={this.handleToggle}>
-          {this.state.showMore
-            ? "Ocultar cotizaciones"
-            : "Ver más cotizaciones"
-          }
-        </button>
+        {/* Toggle additional rates visibility */}
+        <Button color="secondary" label={this.state.showMore
+          ? "Ocultar cotizaciones"
+          : "Ver más cotizaciones"
+        } handleClick={this.handleToggle} />
       </div>
     );
   }
