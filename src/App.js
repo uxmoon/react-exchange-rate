@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.scss';
 import Rates from './components/Rates';
 import Form from './components/Form';
+import Message from './components/Message';
 import API from './api/exchangerate';
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
       rates: {},
       isLoaded: false,
       currency: {
-        base: 'USD',
+        base: 'USDaa',
         date: 'latest',
       },
       errorMessage: '',
@@ -73,7 +74,7 @@ class App extends Component {
 
           {/* display default and updated rates */}
           {this.state.errorMessage
-            ? <p>Ocurrió un error al obtener las cotizaciones. Intente mas tarde.</p>
+            ? <Message color="is-danger">Ocurrió un error al obtener las cotizaciones. Intente mas tarde.</Message>
             : <Rates rates={this.state.rates} loader={this.state.isLoaded} />
           }
         </div>
