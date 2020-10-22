@@ -104,9 +104,9 @@ class Form extends Component {
     return (
       <form onSubmit={this.handleSubmit} className="Form">
         <div className="Form-field">
-          <label htmlFor="base">Selecciona la moneda de referencia</label>
+          <label htmlFor="currency">Selecciona la moneda de referencia</label>
           <div className="Form-select">
-            <select id="moneda" name="moneda" onChange={this.handleBase}>
+            <select id="currency" name="currency" onChange={this.handleBase}>
               <option value="" defaultValue>
                 Seleccionar moneda
               </option>
@@ -118,6 +118,7 @@ class Form extends Component {
           <label htmlFor="date">Ingresá la fecha de cotización</label>
           <MuiPickersUtilsProvider locale={dayjsLocale} utils={dayjsUtils}>
             <KeyboardDatePicker
+              id="date"
               // variant="inline"
               value={this.state.date}
               onChange={this.handleDate}
