@@ -5,8 +5,11 @@ class Button extends Component {
   render() {
     return (
       <div>
-        <button className={`Button Button-${this.props.color}`}>
-          {this.props.label}
+        <button
+          className={`Button Button-${this.props.color}`}
+          onClick={this.props.handleClick}
+        >
+          {this.props.children}
         </button>
       </div>
     );

@@ -128,7 +128,9 @@ class Form extends Component {
             />
           </MuiPickersUtilsProvider>
         </div>
-        <Button label="Buscar cotizaciones" color="primary" />
+        <Button color="primary">
+          Buscar cotizaciones
+        </Button>
       </form>
     );
   }

@@ -26,7 +26,8 @@ class Rates extends Component {
     }
   };
 
-  createRatesDefault = (isDefault = false) => {
+  /* Create rates table for default and additional rates */
+  createRates = (isDefault = false) => {
     const rates = this.props.rates;
     const defaultCurrencies = ['CAD', 'GBP', 'USD', 'EUR'];
     const items = [];
@@ -71,7 +72,8 @@ class Rates extends Component {
 
         {/* Display default rates for USD, CAD, GBP and EUR */}
         {this.props.loader
-          ? this.createRatesDefault(true) :
+          /* Create rates table for default and additional rates */
+          ? this.createRates(true) :
           <div className="Rates-loader">
             <p className="Rates-loader-text">
               Cargando cotizaciones
@@ -80,15 +82,18 @@ class Rates extends Component {
           </div>}
 
         {/* Display additional rates for all other currencies */}
-        <div className={`Rates-list ${this.state.showMore ? 'is-active' : ''}`}>
-          {this.createRatesDefault() }
+        <div className={`Ra
+        /* Create rates table for default and additional rates */tes-list ${this.state.showMore ? 'is-active' : ''}`}>
+          {this.createRates() }
         </div>
 
         {/* Toggle additional rates visibility */}
-        <Button color="secondary" label={this.state.showMore
+        <Button color="secondary" handleClick={this.handleToggle}>
+        {this.state.showMore
           ? "Ocultar cotizaciones"
           : "Ver más cotizaciones"
-        } handleClick={this.handleToggle} />
+        }
+        </Button>
       </div>
     );
   }
