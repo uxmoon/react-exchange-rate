@@ -1,11 +1,10 @@
-$color-primary: #ff673f;
-$color-primary-valid: #ff5f33;
+@import '../scss/colors';
 
 .Button {
   width: 100%;
   font-size: 18px;
   font-weight: 400;
-  border: 1px solid $color-primary-valid;
+  border: 1px solid $color-primary-alt;
   min-height: 56px;
   border-radius: 1000px;
   cursor: pointer;
@@ -20,23 +19,23 @@ $color-primary-valid: #ff5f33;
 }
 
 .Button-primary {
-  background-color: $color-primary-valid;
-  color: #fff;
+  background-color: $color-primary-alt;
+  color: $color-white;
 
   &:hover,
   &:focus {
-    background-color: darken($color-primary-valid, 16%);
+    background-color: darken($color-primary-alt, 16%);
   }
 }
 
 .Button-secondary {
-  background-color: #fff;
-  color: $color-primary-valid;
+  background-color: $color-white;
+  color: $color-primary-alt;
 
   &:hover,
   &:focus {
-    color: darken($color-primary-valid, 16%);
-    border-color: darken($color-primary-valid, 16%);
-    background-color: #f9f9f9;
+    color: darken($color-primary-alt, 16%);
+    border-color: darken($color-primary-alt, 16%);
+    background-color: $color-white-hover;
   }
 }

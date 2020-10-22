@@ -33,7 +33,9 @@ class Rates extends Component {
     const items = [];
 
     for (let key in rates) {
-      const setDefault = isDefault ? defaultCurrencies.includes(key) : !defaultCurrencies.includes(key);
+      const setDefault = isDefault
+        ? defaultCurrencies.includes(key)
+        : !defaultCurrencies.includes(key);
       if (rates.hasOwnProperty(key) && setDefault) {
         // console.log(`currency: ${key}, rate: ${rates[key]} `)
         items.push(
@@ -61,38 +63,35 @@ class Rates extends Component {
   /* Hide additional rates when fetching new rates */
   componentDidUpdate() {
     // console.log(this.state);
-    if(this.props.loader !== true && this.state.showMore === true) {
-      this.setState({showMore: false})
+    if (this.props.loader !== true && this.state.showMore === true) {
+      this.setState({ showMore: false });
     }
   }
 
   render() {
     return (
       <div className="Rates">
-
         {/* Display default rates for USD, CAD, GBP and EUR */}
-        {this.props.loader
+        {this.props.loader ? (
           /* Create rates table for default and additional rates */
-          ? this.createRates(true) :
+          this.createRates(true)
+        ) : (
           <div className="Rates-loader">
-            <p className="Rates-loader-text">
-              Cargando cotizaciones
-            </p>
+            <p className="Rates-loader-text">Cargando cotizaciones</p>
             <div className="Rates-loader-animation"></div>
-          </div>}
+          </div>
+        )}
 
         {/* Display additional rates for all other currencies */}
-        <div className={`Ra
-        /* Create rates table for default and additional rates */tes-list ${this.state.showMore ? 'is-active' : ''}`}>
-          {this.createRates() }
+        <div className={`Rates-list ${this.state.showMore ? 'is-active' : ''}`}>
+          {this.createRates()}
         </div>
 
         {/* Toggle additional rates visibility */}
         <Button color="secondary" handleClick={this.handleToggle}>
-        {this.state.showMore
-          ? "Ocultar cotizaciones"
-          : "Ver más cotizaciones"
-        }
+          {this.state.showMore
+            ? 'Ocultar cotizaciones'
+            : 'Ver más cotizaciones'}
         </Button>
       </div>
     );
