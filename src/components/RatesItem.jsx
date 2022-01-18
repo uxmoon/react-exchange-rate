@@ -7,7 +7,11 @@ class RatesItem extends Component {
       <div className="Rates-item">
         <div>
           <span>
-            <ReactCountryFlag countryCode={this.props.flag} svg />
+            <ReactCountryFlag
+              countryCode={this.props.flag}
+              svg
+              title={this.props.flag}
+            />
           </span>
         </div>
         <div>{this.props.currency}</div>
