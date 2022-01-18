@@ -5,6 +5,8 @@ import Form from "./components/Form";
 import Message from "./components/Message";
 import API from "./api/exchangerate";
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +23,6 @@ class App extends Component {
 
   /* get rates from API and update state */
   async componentDidMount() {
-    const API_KEY = import.meta.env.VITE_API_KEY;
     try {
       let response = await API.get(
         `/${this.state.currency.date}?access_key=${API_KEY}&symbols=${this.state.currency.base}`
@@ -53,7 +54,7 @@ class App extends Component {
   /* Fetch new rates */
   setNewRates = async () => {
     let response = await API.get(
-      `/${this.state.currency.date}?base=${this.state.currency.base}`
+      `/${this.state.currency.date}?access_key=${API_KEY}&symbols=${this.state.currency.base}`
     );
     setTimeout(
       function () {
