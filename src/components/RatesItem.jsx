@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import ReactCountryFlag from "react-country-flag";
 
 class RatesItem extends Component {
   render() {
     return (
       <div className="Rates-item">
-        {/* <div>{this.props.flag}</div> */}
         <div>
           <span>
-          <img
-            src={`https://www.countryflags.io/${this.props.flag}/flat/48.png`}
-            alt=""
-            aria-hidden="true"
-          />
+            <ReactCountryFlag countryCode={this.props.flag} svg />
           </span>
         </div>
         <div>{this.props.currency}</div>
