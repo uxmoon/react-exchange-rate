@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
-import './Form.scss';
-import Button from './Button';
-import dayjsUtils from '@date-io/dayjs';
-import dayjsLocale from 'dayjs/locale/es';
-import dayjs from 'dayjs';
+import React, { Component } from "react";
+import "./Form.scss";
+import Button from "./Button";
+import dayjsUtils from "@date-io/dayjs";
+import dayjsLocale from "dayjs/locale/es";
+import dayjs from "dayjs";
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
+} from "@material-ui/pickers";
 
 class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      base: 'USD',
-      date: dayjs().format('YYYY-MM-DD')
+      base: "USD",
+      symbols: ["USD", "CAD", "GBP", "EUR"],
+      date: dayjs().format("YYYY-MM-DD"),
     };
   }
 
@@ -29,7 +30,7 @@ class Form extends Component {
   /* Currency date - update value on Datepicker selection */
   handleDate = (date) => {
     this.setState({
-      date: date.format('YYYY-MM-DD'),
+      date: date.format("YYYY-MM-DD"),
     });
   };
 
@@ -49,39 +50,39 @@ class Form extends Component {
   /* Create dropdown options for currencies */
   createRates = () => {
     const currencyNames = {
-      CAD: 'Dólar Canadiense',
-      HKD: 'Dólar Hong Kong',
-      ISK: 'Corona Islandesa',
-      PHP: 'Peso Filipino',
-      DKK: 'Corona Danesa',
-      HUF: 'Forinto',
-      CZK: 'Corona Checa',
-      GBP: 'Libra Esterlina',
-      RON: 'Leu Rumano',
-      SEK: 'Corona Sueca',
-      IDR: 'Rupia Indonesia',
-      INR: 'Rupia India',
-      BRL: 'Real Brasileño',
-      RUB: 'Rublo',
-      HRK: 'Kruna Croata',
-      JPY: 'Yen',
-      THB: 'Bat Tailandés',
-      CHF: 'Franco Suizo',
-      EUR: 'Euro',
-      MYR: 'Ringit',
-      BGN: 'Leva Búlgaro',
-      TRY: 'Lira Turca',
-      CNY: 'Yuan',
-      NOK: 'Corona Noruega',
-      NZD: 'Dólar de Nueva Zelanda',
-      ZAR: 'Rand',
-      USD: 'Dólar estadounidense',
-      MXN: 'Peso Mexicano',
-      SGD: 'Dólar singapurense',
-      AUD: 'Dólar australiano',
-      ILS: 'Nuevo séquel',
-      KRW: 'Won surcoreano',
-      PLN: 'Zloty',
+      CAD: "Dólar Canadiense",
+      HKD: "Dólar Hong Kong",
+      ISK: "Corona Islandesa",
+      PHP: "Peso Filipino",
+      DKK: "Corona Danesa",
+      HUF: "Forinto",
+      CZK: "Corona Checa",
+      GBP: "Libra Esterlina",
+      RON: "Leu Rumano",
+      SEK: "Corona Sueca",
+      IDR: "Rupia Indonesia",
+      INR: "Rupia India",
+      BRL: "Real Brasileño",
+      RUB: "Rublo",
+      HRK: "Kruna Croata",
+      JPY: "Yen",
+      THB: "Bat Tailandés",
+      CHF: "Franco Suizo",
+      EUR: "Euro",
+      MYR: "Ringit",
+      BGN: "Leva Búlgaro",
+      TRY: "Lira Turca",
+      CNY: "Yuan",
+      NOK: "Corona Noruega",
+      NZD: "Dólar de Nueva Zelanda",
+      ZAR: "Rand",
+      USD: "Dólar estadounidense",
+      MXN: "Peso Mexicano",
+      SGD: "Dólar singapurense",
+      AUD: "Dólar australiano",
+      ILS: "Nuevo séquel",
+      KRW: "Won surcoreano",
+      PLN: "Zloty",
     };
 
     const rates = this.props.rates;
@@ -129,9 +130,7 @@ class Form extends Component {
             />
           </MuiPickersUtilsProvider>
         </div>
-        <Button color="primary">
-          Buscar cotizaciones
-        </Button>
+        <Button color="primary">Buscar cotizaciones</Button>
       </form>
     );
   }
