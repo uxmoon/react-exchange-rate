@@ -14,7 +14,6 @@ class App extends Component {
       rates: {},
       isLoaded: false,
       currency: {
-        base: "USD",
         symbols: ["USD", "CAD", "GBP", "EUR"],
         date: "latest",
       },
@@ -38,7 +37,7 @@ class App extends Component {
   }
 
   /*
-    - Update currency date and base from child component
+    - Update currency date from child component
     - Fetch new rates after state is updated
   */
   setCurrency = (items) => {

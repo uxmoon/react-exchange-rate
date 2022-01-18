@@ -12,6 +12,8 @@ This app uses a [Foreign exchange rates API](https://exchangeratesapi.io/) free 
 
 - Replaced [Create React App](https://create-react-app.dev/) with [Vite](https://vitejs.dev/)
 - Vite migration: renamed file extension to `.jsx`, remove public folder and files, added vite config file, and more.
+- ExchangeRatesAPI free plan doesn't allow to change `base` currency, default set to `EUR`
+- Remove dropdown to change currency base
 
 ### 0.1.0
 

@@ -13,19 +13,18 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      base: "USD",
       symbols: ["USD", "CAD", "GBP", "EUR"],
       date: dayjs().format("YYYY-MM-DD"),
     };
   }
 
   /* Currency base - update value on dropdown selection  */
-  handleBase = (evt) => {
-    // console.log(evt.target.value);
-    if (evt.target.value) {
-      this.setState({ base: evt.target.value });
-    }
-  };
+  // handleBase = (evt) => {
+  //   // console.log(evt.target.value);
+  //   if (evt.target.value) {
+  //     this.setState({ base: evt.target.value });
+  //   }
+  // };
 
   /* Currency date - update value on Datepicker selection */
   handleDate = (date) => {
@@ -104,7 +103,7 @@ class Form extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="Form">
-        <div className="Form-field">
+        {/* <div className="Form-field">
           <label htmlFor="currency">Selecciona la moneda de referencia</label>
           <div className="Form-select">
             <select id="currency" name="currency" onChange={this.handleBase}>
@@ -114,7 +113,7 @@ class Form extends Component {
               {this.createRates()}
             </select>
           </div>
-        </div>
+        </div> */}
         <div className="Form-field">
           <label htmlFor="date">Ingresá la fecha de cotización</label>
           <MuiPickersUtilsProvider locale={dayjsLocale} utils={dayjsUtils}>
