@@ -13,6 +13,12 @@ This app uses a [Foreign exchange rates API](https://exchangeratesapi.io/) free 
 - Replaced [Create React App](https://create-react-app.dev/) with [Vite](https://vitejs.dev/)
 - Vite migration: renamed file extension to `.jsx`, remove public folder and files, added vite config file, and more.
 
+### 0.1.0
+
+- Use [Create React App](https://create-react-app.dev/)
+- Components are class based
+- Use Sass to write CSS
+
 ## Requirements
 
 - [NodeJs](https://nodejs.org/en/)
