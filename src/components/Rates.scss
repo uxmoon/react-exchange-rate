@@ -1,4 +1,4 @@
-@import '../scss/colors';
+@import "../scss/colors";
 
 .Rates {
   border-top: 1px solid $color-border;
@@ -21,13 +21,13 @@
   margin-left: auto;
 }
 
-.Rates-item span {
-  overflow: hidden;
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-}
+// .Rates-item span {
+//   overflow: hidden;
+//   display: inline-block;
+//   width: 32px;
+//   height: 32px;
+//   border-radius: 50%;
+// }
 
 .Rates-item img {
   vertical-align: middle;
