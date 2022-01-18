@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import './App.scss';
-import Rates from './components/Rates';
-import Form from './components/Form';
-import Message from './components/Message';
-import API from './api/exchangerate';
+import React, { Component } from "react";
+import "./App.scss";
+import Rates from "./components/Rates";
+import Form from "./components/Form";
+import Message from "./components/Message";
+import API from "./api/exchangerate";
 
 class App extends Component {
   constructor(props) {
@@ -12,18 +12,19 @@ class App extends Component {
       rates: {},
       isLoaded: false,
       currency: {
-        base: 'USD',
-        date: 'latest',
+        base: ["USD", "EUR", "CAD", "GBP"],
+        date: "latest",
       },
-      errorMessage: '',
+      errorMessage: "",
     };
   }
 
   /* get rates from API and update state */
   async componentDidMount() {
+    const API_KEY = import.meta.env.VITE_API_KEY;
     try {
       let response = await API.get(
-        `/${this.state.currency.date}?base=${this.state.currency.base}`
+        `/${this.state.currency.date}?access_key=${API_KEY}&symbols=${this.state.currency.base}`
       );
       this.setState({ rates: response.data.rates, isLoaded: true });
       // console.log('component mounted', this.state);
@@ -38,12 +39,15 @@ class App extends Component {
     - Fetch new rates after state is updated
   */
   setCurrency = (items) => {
-    this.setState({
-      currency: items,
-      isLoaded: false
-    }, () => {
-      this.setNewRates();
-    })
+    this.setState(
+      {
+        currency: items,
+        isLoaded: false,
+      },
+      () => {
+        this.setNewRates();
+      }
+    );
   };
 
   /* Fetch new rates */
@@ -73,10 +77,13 @@ class App extends Component {
           {<Form action={this.setCurrency} rates={this.state.rates} />}
 
           {/* display default and updated rates */}
-          {this.state.errorMessage
-            ? <Message color="is-danger">Ocurrió un error al obtener las cotizaciones. Intente mas tarde.</Message>
-            : <Rates rates={this.state.rates} loader={this.state.isLoaded} />
-          }
+          {this.state.errorMessage ? (
+            <Message color="is-danger">
+              Ocurrió un error al obtener las cotizaciones. Intente mas tarde.
+            </Message>
+          ) : (
+            <Rates rates={this.state.rates} loader={this.state.isLoaded} />
+          )}
         </div>
       </div>
     );
