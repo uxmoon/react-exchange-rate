@@ -4,7 +4,7 @@ This project was created using [Create React App](https://github.com/facebook/cr
 
 This app uses a [Foreign exchange rates API](https://exchangeratesapi.io/) free service for current and historical foreign exchange rates.
 
-[View Demo](https://uxmoon-react-exchange-rates.netlify.app/) :rocket:
+<!-- [View Demo](https://uxmoon-react-exchange-rates.netlify.app/) :rocket: -->
 
 ## Changelog
 
