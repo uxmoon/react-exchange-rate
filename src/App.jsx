@@ -14,7 +14,8 @@ class App extends Component {
       rates: {},
       isLoaded: false,
       currency: {
-        base: ["USD", "EUR", "CAD", "GBP"],
+        base: "USD",
+        symbols: ["USD", "CAD", "GBP", "EUR"],
         date: "latest",
       },
       errorMessage: "",
@@ -25,8 +26,9 @@ class App extends Component {
   async componentDidMount() {
     try {
       let response = await API.get(
-        `/${this.state.currency.date}?access_key=${API_KEY}&symbols=${this.state.currency.base}`
+        `/${this.state.currency.date}?access_key=${API_KEY}&symbols=${this.state.currency.symbols}`
       );
+      console.log(response.data);
       this.setState({ rates: response.data.rates, isLoaded: true });
       // console.log('component mounted', this.state);
     } catch (error) {
@@ -54,7 +56,7 @@ class App extends Component {
   /* Fetch new rates */
   setNewRates = async () => {
     let response = await API.get(
-      `/${this.state.currency.date}?access_key=${API_KEY}&symbols=${this.state.currency.base}`
+      `/${this.state.currency.date}?access_key=${API_KEY}&symbols=${this.state.currency.symbols}`
     );
     setTimeout(
       function () {
