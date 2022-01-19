@@ -2,3 +2,7 @@
   for = "/*"
   [headers.values]
   Access-Control-Allow-Origin = "*"
+[[redirects]]
+  from = "/api/*"
+  to = "http://api.exchangeratesapi.io/v1/:splat"
+  status = 200
