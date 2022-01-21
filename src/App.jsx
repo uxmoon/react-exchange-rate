@@ -3,7 +3,6 @@ import "./App.scss";
 import Rates from "./components/Rates";
 import Form from "./components/Form";
 import Message from "./components/Message";
-// import API from "./api/exchangerate";
 import axios from "axios";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -26,9 +25,9 @@ class App extends Component {
   async componentDidMount() {
     try {
       let response = await axios.get(
-        `/api/v1/${this.state.currency.date}?access_key=${API_KEY}&symbols=${this.state.currency.symbols}`
+        `/.netlify/functions/fetch-currencies?symbols=${this.state.currency.symbols}`
       );
-      // console.log(response.data);
+      console.log(response);
       this.setState({ rates: response.data.rates, isLoaded: true });
       // console.log('component mounted', this.state);
     } catch (error) {
@@ -57,6 +56,7 @@ class App extends Component {
   setNewRates = async () => {
     let response = await API.get(
       `/api/${this.state.currency.date}?access_key=${API_KEY}&symbols=${this.state.currency.symbols}`
+      // `/api/${this.state.currency.date}?access_key=${API_KEY}&symbols=${this.state.currency.symbols}`
     );
     setTimeout(
       function () {
