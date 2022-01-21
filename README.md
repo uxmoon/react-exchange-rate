@@ -4,7 +4,7 @@ This project was created using [Create React App](https://github.com/facebook/cr
 
 This app uses a [Foreign exchange rates API](https://exchangeratesapi.io/) free service for current and historical foreign exchange rates.
 
-<!-- [View Demo](https://uxmoon-react-exchange-rates.netlify.app/) :rocket: -->
+[View Demo](https://uxmoon-react-exchange-rates.netlify.app/) :rocket:
 
 ## Changelog
 
@@ -14,6 +14,7 @@ This app uses a [Foreign exchange rates API](https://exchangeratesapi.io/) free 
 - Vite migration: renamed file extension to `.jsx`, remove public folder and files, added vite config file, and more.
 - ExchangeRatesAPI free plan doesn't allow to change `base` currency, default set to `EUR`
 - Remove dropdown to change currency base
+- Learn how to use Netlify functions to hide API Access Key
 
 ### 0.1.0
 
