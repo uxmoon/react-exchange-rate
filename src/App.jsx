@@ -54,9 +54,12 @@ class App extends Component {
 
   /* Fetch new rates */
   setNewRates = async () => {
-    let response = await API.get(
-      `/api/${this.state.currency.date}?access_key=${API_KEY}&symbols=${this.state.currency.symbols}`
-      // `/api/${this.state.currency.date}?access_key=${API_KEY}&symbols=${this.state.currency.symbols}`
+    // let response = await API.get(
+    //   `/.netlify/functions/fetch-currencies?symbols=${this.state.currency.symbols}&date=${this.state.currency.date}`
+    //   // `/api/${this.state.currency.date}?access_key=${API_KEY}&symbols=${this.state.currency.symbols}`
+    // );
+    let response = await axios.get(
+      `/.netlify/functions/fetch-currencies?symbols=${this.state.currency.symbols}&date=${this.state.currency.date}`
     );
     setTimeout(
       function () {
